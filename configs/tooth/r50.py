@@ -63,7 +63,7 @@ model = dict(
             num_convs=4,
             in_channels=256,
             conv_out_channels=256,
-            num_classes=80,
+            num_classes=2,
             loss_mask=dict(
                 type='CrossEntropyLoss', use_mask=True, loss_weight=1.0))))
 # model training and testing settings
@@ -124,7 +124,8 @@ test_cfg = dict(
         mask_thr_binary=0.5))
 
 dataset_type = 'CocoDataset'
-data_root = 'data/tooth/'
+#data_root = 'data/tooth/'
+data_root = 'testimgs/'
 img_norm_cfg = dict(
     mean=[123.675, 116.28, 103.53], std=[58.395, 57.12, 57.375], to_rgb=True)
 train_pipeline = [
@@ -157,18 +158,18 @@ data = dict(
     workers_per_gpu=2,
     train=dict(
         type=dataset_type,
-        ann_file=data_root + 'train.json',
+        ann_file=data_root + 'tooth.json',
         img_prefix=data_root + 'train/',
         pipeline=train_pipeline),
     val=dict(
         type=dataset_type,
-        ann_file=data_root + 'train.json',
-        img_prefix=data_root + 'train/',
+        ann_file=data_root + 'chenlina.json',
+        img_prefix=data_root + '/',
         pipeline=test_pipeline),
     test=dict(
         type=dataset_type,
-        ann_file=data_root + 'train.json',
-        img_prefix=data_root + 'train/',
+        ann_file=data_root + 'chenlina.json',
+        img_prefix=data_root + '/',
         pipeline=test_pipeline))
 evaluation = dict(metric=['bbox', 'segm'])
 
