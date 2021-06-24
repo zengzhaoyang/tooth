@@ -24,7 +24,7 @@ def cal(np.ndarray segs):
         for j in range(y):
             for k in range(z):
                 if segs[i,j,k] != 0 and tmp[i, j, k] == 0:
-                    print(i,j,k)
+#                    print(i,j,k)
                     q.put((i,j,k))
                     tmp[i,j,k] = nowcnt
                     qlen += 1
